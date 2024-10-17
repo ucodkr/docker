@@ -19,7 +19,7 @@ RUN  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/
 #     --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 # ENV PATH=/root/.cargo/bin:$PATH
 # RUN cargo install apple-codesign
-COPY --from=docker:dind /usr/local/bin/docker /usr/local/bin/ 
+COPY --from=docker:dind /usr/local/bin/docker /usr/local/bin/
 COPY --from=hashicorp/terraform:latest /bin/terraform /usr/local/bin/ 
 RUN ln -s  /usr/local/bin/terraform /usr/local/bin/tf
 # FROM hashicorp/terraform:latest
