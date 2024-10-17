@@ -11,9 +11,15 @@ build:
 bash:
 	docker run --rm -it \
 		-v ${PWD}:${PWD} \
+		-v /var/run/docker.sock:/var/run/docker.sock \
 		${ORG}/${IMAGE_NAME}:${VERSION}  bash
 
 deploy:
 	docker tag ${ORG}/${IMAGE_NAME}:${VERSION} ${ORG}/${IMAGE_NAME}:latest
 	docker push ${ORG}/${IMAGE_NAME}:${VERSION} 
 	docker push ${ORG}/${IMAGE_NAME}:latest
+
+test:	
+	docker run --rm -it \
+		-v ${PWD}:${PWD} \
+		${ORG}/${IMAGE_NAME}:${VERSION}  tf init
